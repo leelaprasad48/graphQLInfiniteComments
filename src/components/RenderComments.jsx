@@ -4,6 +4,8 @@ import {Mutation} from 'react-apollo';
 import {POST_MUTATION} from './Constants'
 import Button from '@beans/button';
 import Icon from '@beans/icon';
+import Input from '@beans/input';
+import {CommentContainer} from './styles';
 
 class RenderComments extends React.Component {
     constructor(props) {
@@ -27,6 +29,18 @@ class RenderComments extends React.Component {
         });
     }
 
+    nameComponent = () => {
+        return(
+            <Input placeholder="name" onChange={(e) => this.handleChange("name", e)}/>
+        );
+    };
+
+    commentComponent = () => {
+        return(
+            <Input placeholder="comment" onChange={(e) => this.handleChange("comment", e)}/>
+        );
+    };
+
     render() {
         let {comment, handleSubmit} = this.props;
         let [inputName, inputComment] = [this.state.name, this.state.comment];
@@ -37,18 +51,17 @@ class RenderComments extends React.Component {
                 <span>{comment.content} </span>
                 <Button variant="primary" onClick={() => this.showReply()}><Icon graphic="comments"/></Button>
                 {this.state.show && (
-                    <form>
-                        <input type="text" placeholder="name" name="name"
-                               onChange={(e) => this.handleChange("name", e)}/>
-                        <input type="text" placeholder="comment" name="comment"
-                               onChange={(e) => this.handleChange("comment", e)}/>
+                    <div>
+                        <CommentContainer>
+                            {this.nameComponent()}
+                            {this.commentComponent()}
+                        </CommentContainer>
                         <Mutation mutation={POST_MUTATION} variables={{parentId, inputName, inputComment}}>
                             {(addComment) => (
-                                <input type="button" value="post"
-                                       onClick={addComment}/>
+                                <Button variant="primary" onClick={addComment}>{"Post"}</Button>
                             )}
                         </Mutation>
-                    </form>
+                    </div>
                 )}
                 <Comments key={comment.id} comments={comment.comments} handleSubmit={handleSubmit}
                           show={this.state.show}/>

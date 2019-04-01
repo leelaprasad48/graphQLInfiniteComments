@@ -6,6 +6,7 @@
     "@babel/runtime": "^7.4.2",
     "@beans/button": "^14.2.1",
     "@beans/icon": "^14.2.1",
+    "@beans/input": "^14.1.1",
     "@beans/theme": "^14.2.1",
     "@beans/typography": "^14.1.1",
     "apollo-boost": "^0.3.1",
