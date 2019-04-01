@@ -1,8 +1,9 @@
 import React from "react";
 import Comments from './Comments';
-import Reply from '../assets/reply.svg';
 import {Mutation} from 'react-apollo';
 import {POST_MUTATION} from './Constants'
+import Button from '@beans/button';
+import Icon from '@beans/icon';
 
 class RenderComments extends React.Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class RenderComments extends React.Component {
             <React.Fragment key={comment.id}>
                 <div style={{color: "#0000ff"}}>{comment.name} </div>
                 <span>{comment.content} </span>
-                <img src={Reply} onClick={() => this.showReply()} alt="reply"/>
+                <Button variant="primary" onClick={() => this.showReply()}><Icon graphic="comments"/></Button>
                 {this.state.show && (
                     <form>
                         <input type="text" placeholder="name" name="name"

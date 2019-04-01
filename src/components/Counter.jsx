@@ -4,6 +4,7 @@ import Comments from './Comments';
 import {Mutation} from 'react-apollo';
 import {GET_POSTS, START_NEW_THREAD} from './Constants';
 
+
 export class Counter extends React.Component {
     constructor(props) {
         super(props);
@@ -49,6 +50,7 @@ export class Counter extends React.Component {
                                    onClick={startNewThread}/>
                         )}
                     </Mutation>
+
                 </form>
             </div>
         );
